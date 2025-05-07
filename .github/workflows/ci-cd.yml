@@ -45,4 +45,5 @@ jobs:
       - name: Run tests with pytest
         run: |
           pip install pytest
-          pytest
+          # Add the root directory to PYTHONPATH to allow pytest to find 'src'
+          PYTHONPATH=$(pwd)/src pytest tests
