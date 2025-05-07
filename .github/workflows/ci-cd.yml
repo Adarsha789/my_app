@@ -45,6 +45,14 @@ jobs:
       - name: Run tests with pytest
         run: |
           pip install pytest
-          # Explicitly set PYTHONPATH and run pytest with the tests
           export PYTHONPATH=$(pwd)/src:$PYTHONPATH
           pytest tests
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.ADARSHA07 }}" | docker login -u "${{ secrets.GITHUB_TOKEN }}" --password-stdin
+
+      - name: Build and tag Docker image
+        run: docker build -t ${{ secrets.ADARSHA07 }}/my-app:latest .
+
+      - name: Push Docker image to Docker Hub
+        run: docker push ${{ secrets.GITHUB_TOKEN }}/my-app:latest
