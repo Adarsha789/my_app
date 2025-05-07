@@ -45,5 +45,6 @@ jobs:
       - name: Run tests with pytest
         run: |
           pip install pytest
-          # Set PYTHONPATH to the src directory so pytest can find it
-          PYTHONPATH=$(pwd)/src pytest tests
+          # Explicitly set PYTHONPATH and run pytest with the tests
+          export PYTHONPATH=$(pwd)/src:$PYTHONPATH
+          pytest tests
