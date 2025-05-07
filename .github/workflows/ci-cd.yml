@@ -20,7 +20,7 @@ jobs:
           python-version: '3.10'
 
       - name: Cache pip dependencies
-        uses: actions/cache@v3  # Updated to v3 to avoid the missing download error
+        uses: actions/cache@v3
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-python-${{ hashFiles('requirements.txt') }}
@@ -45,5 +45,5 @@ jobs:
       - name: Run tests with pytest
         run: |
           pip install pytest
-          # Add the root directory to PYTHONPATH to allow pytest to find 'src'
+          # Set PYTHONPATH to the src directory so pytest can find it
           PYTHONPATH=$(pwd)/src pytest tests
