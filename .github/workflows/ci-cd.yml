@@ -49,10 +49,10 @@ jobs:
           pytest tests
 
       - name: Log in to Docker Hub
-        run: echo "${{ secrets.ADARSHA07 }}" | docker login -u "${{ secrets.GITHUB_TOKEN }}" --password-stdin
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login -u "${{ secrets.ADARSHA07 }}" --password-stdin
 
       - name: Build and tag Docker image
-        run: docker build -t ${{ secrets.ADARSHA07 }}/my-app:latest .
+        run: docker build -t ${{ secrets.ADARSHA07}}/my-app:latest .
 
       - name: Push Docker image to Docker Hub
-        run: docker push ${{ secrets.GITHUB_TOKEN }}/my-app:latest
+        run: docker push ${{ secrets.ADARSHA07 }}/my-app:latest
