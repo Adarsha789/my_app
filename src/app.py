@@ -12,10 +12,8 @@ class NameForm(FlaskForm):
     submit = SubmitField("Submit")
 
 
-data = [
-    {"name": "Alice", "message": "Hello, Alice!"},
-    {"name": "Bob", "message": "Hey, Bob!"},
-]
+# Start with an empty list — no default users
+data = []
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -27,11 +25,7 @@ def index():
         data.append({"name": name, "message": message})
         return redirect(url_for("index"))
 
-    return render_template(
-        "index.html",
-        form=form,
-        data=data,
-    )
+    return render_template("index.html", form=form, data=data)
 
 
 if __name__ == "__main__":
