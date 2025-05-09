@@ -5,4 +5,5 @@ def test_home():
     client = app.test_client()
     response = client.get("/")
     assert response.status_code == 200
-    assert response.data == b"Hello, CI/CD!"
+    assert b"Welcome to My Flask App!" in response.data
+    assert b"Enter your name:" in response.data
