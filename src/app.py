@@ -18,15 +18,29 @@ data = []
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+    print("Index page loaded.")
     form = NameForm()
+
     if form.validate_on_submit():
+        print("Form submitted successfully.")
         name = form.name.data
         message = f"Hello, {name}!"
-        entry = {"name": name, "message": message}
-        data.append(entry)
-        return redirect(url_for("index"))
+        data.append({"name": name, "message": message})
+
+        # Debugging message before redirection
+        print(f"Form data: {name}, {message}")
+        print("Redirecting to success...")
+
+        # Redirect to the success page
+        return redirect(url_for("success"))
 
     return render_template("index.html", form=form, data=data)
+
+
+@app.route("/success")
+def success():
+    print("Redirected to success page.")
+    return "Form submitted successfully!"
 
 
 if __name__ == "__main__":

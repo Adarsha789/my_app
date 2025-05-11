@@ -9,7 +9,13 @@ def test_home_page_loads():
 
 
 def test_form_submission():
+    """Test if submitting a form redirects to the success page"""
+
     client = app.test_client()
-    response = client.post("/", data={"name": "Adarsha"})
+
+    response = client.post("/", data={"name": "Adarsha"}, follow_redirects=False)
+
     assert response.status_code == 302
-    assert response.location.endswith("/success")
+
+    location = response.location
+    assert location.endswith("/success")
