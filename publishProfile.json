@@ -1,0 +1,46 @@
+[
+  {
+    "SQLServerDBConnectionString": "",
+    "controlPanelLink": "https://portal.azure.com",
+    "databases": null,
+    "destinationAppUrl": "http://flask-app-service-adarsha7.azurewebsites.net",
+    "hostingProviderForumLink": "",
+    "msdeploySite": "flask-app-service-adarsha7",
+    "mySQLDBConnectionString": "",
+    "profileName": "flask-app-service-adarsha7 - Web Deploy",
+    "publishMethod": "MSDeploy",
+    "publishUrl": "flask-app-service-adarsha7.scm.azurewebsites.net:443",
+    "userName": "$flask-app-service-adarsha7",
+    "userPWD": "4HEFZxjfbNWjAG3uhbnnZveM6jfRJDqrfgy9qWcK32Eawfy6HJu128MLjHSH",
+    "webSystem": "WebSites"
+  },
+  {
+    "SQLServerDBConnectionString": "",
+    "controlPanelLink": "https://portal.azure.com",
+    "databases": null,
+    "destinationAppUrl": "http://flask-app-service-adarsha7.azurewebsites.net",
+    "ftpPassiveMode": "True",
+    "hostingProviderForumLink": "",
+    "mySQLDBConnectionString": "",
+    "profileName": "flask-app-service-adarsha7 - FTP",
+    "publishMethod": "FTP",
+    "publishUrl": "ftps://waws-prod-pn1-039.ftp.azurewebsites.windows.net/site/wwwroot",
+    "userName": "flask-app-service-adarsha7\\$flask-app-service-adarsha7",
+    "userPWD": "4HEFZxjfbNWjAG3uhbnnZveM6jfRJDqrfgy9qWcK32Eawfy6HJu128MLjHSH",
+    "webSystem": "WebSites"
+  },
+  {
+    "SQLServerDBConnectionString": "",
+    "controlPanelLink": "https://portal.azure.com",
+    "databases": null,
+    "destinationAppUrl": "http://flask-app-service-adarsha7.azurewebsites.net",
+    "hostingProviderForumLink": "",
+    "mySQLDBConnectionString": "",
+    "profileName": "flask-app-service-adarsha7 - Zip Deploy",
+    "publishMethod": "ZipDeploy",
+    "publishUrl": "flask-app-service-adarsha7.scm.azurewebsites.net:443",
+    "userName": "$flask-app-service-adarsha7",
+    "userPWD": "4HEFZxjfbNWjAG3uhbnnZveM6jfRJDqrfgy9qWcK32Eawfy6HJu128MLjHSH",
+    "webSystem": "WebSites"
+  }
+]
