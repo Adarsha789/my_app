@@ -22,7 +22,8 @@ def index():
     if form.validate_on_submit():
         name = form.name.data
         message = f"Hello, {name}!"
-        data.append({"name": name, "message": message})
+        entry = {"name": name, "message": message}
+        data.append(entry)
         return redirect(url_for("index"))
 
     return render_template("index.html", form=form, data=data)
