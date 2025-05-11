@@ -31,9 +31,10 @@ jobs:
         run: |
           black src --check
 
-      - name: Run tests with pytest
-        run: |
-          PYTHONPATH=src pytest tests
+            - name: Run tests with pytest
+          pip install pytest
+          PYTHONPATH=./src pytest tests
+
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
