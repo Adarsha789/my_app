@@ -1,9 +1,8 @@
-name: CI/CD for Flask App
+name: CI/CD
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build-and-deploy:
@@ -18,37 +17,43 @@ jobs:
         with:
           python-version: '3.10'
 
+      # Step 2: Install dependencies from requirements.txt
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install black flake8 pytest
+          python -m pip install --upgrade pip  # Upgrade pip to ensure latest version
+          pip install -r requirements.txt     # Install all dependencies listed in requirements.txt
 
-      - name: Lint with black
-        run: black src --check
-
-      - name: Lint with flake8
-        run: flake8 src
-
-      - name: Run tests with pytest
+      # Optional: Run Tests
+      - name: Run Tests
         run: |
-          export PYTHONPATH=$PYTHONPATH:./src
+          pip install pytest
+          export PYTHONPATH=$PYTHONPATH:./src  # Ensure the 'src' directory is part of the PYTHONPATH
           pytest tests
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Build and push Docker image
+      # Optional: Lint with flake8
+      - name: Lint with flake8
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/my-flask-app .
-          docker push ${{ secrets.DOCKER_USERNAME }}/my-flask-app
+          pip install flake8
+          flake8 src
 
-      - name: Deploy to Azure Web App
+      # Optional: Format check with black
+      - name: Format check with black
+        run: |
+          pip install black
+          black src --check
+
+      # Optional: Deploy Docker image to Azure (or other platforms)
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build and Push Docker image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/my-app:latest .
+          docker push ${{ secrets.DOCKER_USERNAME }}/my-app:latest
+
+      - name: Deploy to Azure Web App (Docker)
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'flask-app-service-adarsha7'
+          app-name: flask-app-service-adarsha7
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          images: '${{ secrets.DOCKER_USERNAME }}/my-flask-app'
+          images: '${{ secrets.DOCKER_USERNAME }}/my-app:latest'
