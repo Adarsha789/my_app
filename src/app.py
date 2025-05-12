@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
@@ -5,6 +6,10 @@ from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "your_secret_key_here"
+
+# ✅ Disable CSRF during testing (e.g., in GitHub Actions)
+if os.environ.get("FLASK_ENV") == "testing":
+    app.config["WTF_CSRF_ENABLED"] = False
 
 
 class NameForm(FlaskForm):

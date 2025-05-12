@@ -1,5 +1,9 @@
 from src.app import app
 
+# Disable CSRF during testing
+app.config["WTF_CSRF_ENABLED"] = False
+app.config["TESTING"] = True
+
 
 def test_home_page_loads():
     client = app.test_client()
@@ -9,13 +13,7 @@ def test_home_page_loads():
 
 
 def test_form_submission():
-    """Test if submitting a form redirects to the success page"""
-
     client = app.test_client()
-
     response = client.post("/", data={"name": "Adarsha"}, follow_redirects=False)
-
     assert response.status_code == 302
-
-    location = response.location
-    assert location.endswith("/success")
+    assert response.location.endswith("/success")
